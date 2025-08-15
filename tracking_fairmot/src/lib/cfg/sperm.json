@@ -1,0 +1,12 @@
+{
+  "train": {
+    "sperm": "src/data/sperm.train"
+  },
+  "val": {
+    "sperm": "src/data/sperm.val"
+  },
+  "test": {
+    "sperm": "src/data/sperm.test"
+  },
+  "root": "/home/ubuntu/projects/FairMOT/MOT_dataset"
+}

@@ -1,0 +1,31 @@
+
+model:
+  name: "UNet"
+  in_channels: 3
+  num_classes: 3
+  bilinear: true
+  use_attention: true 
+
+train:
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 30
+  batch_size: 64
+  scheduler: onecycle
+  lr_max: 0.01
+  loss_type: combo         
+  device: cuda               # cpu / cuda
+  save_path: checkpoints/unet_attention.pth
+  seed: 42                   # 建议加上，复现更稳
+
+data:
+  dataset_path: /home/ubuntu/seg/new_dataset
+  image_size: 120
+  num_workers: 2
+  dummy_data: false
+  aug:                       # ← 新增：各增强默认全开
+    hflip: true
+    vflip: true
+    rotate: true
+    affine: true
+    color_jitter: true

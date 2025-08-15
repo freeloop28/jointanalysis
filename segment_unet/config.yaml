@@ -1,0 +1,51 @@
+model:
+  name: "UNet"
+  in_channels: 3
+  num_classes: 2            # ★ 建议用2（head/tail）。若你必须3类(含背景)，脚本也支持
+  bilinear: true
+  use_attention: true       # 传给你的UNet；若无此参数会自动忽略
+
+train:
+  learning_rate: 0.001      # 基础lr（OneCycle会从 learning_rate/10 热身到 lr_max）
+  lr_max: 0.01              # ★ OneCycle峰值lr
+  weight_decay: 0.0001
+  epochs: 30                # 这里不会用满，极快版会用 fast_sweep 的stage设置
+  batch_size: 64
+  scheduler: onecycle
+  device: cuda              # cpu / cuda
+  seed: 42
+  save_path: checkpoints/unet_attention.pth  # 最终冠军另存一份
+
+data:
+  dataset_path: /home/ubuntu/seg/new_dataset   # 需包含 train/val/test 三个子目录
+  image_size: 120
+  num_workers: 2
+  dummy_data: false
+  aug:
+    hflip: true
+    vflip: true
+    rotate: true
+    affine: true
+    color_jitter: true
+
+# ★ 新增：日志 & 运行控制
+logging:
+  wandb: true
+  wandb_project: sperm-seg-fast-sweep
+  wandb_group_prefix: FastSweep
+
+# ★ 新增：类别通道映射（请按你数据集输出）
+class_map:
+  head: 0
+  tail: 1
+  background: null          # 若num_classes=3且有背景通道，可写 2；否则 null
+
+# ★ 新增：极快版的三个阶段epoch设置
+fast_sweep:
+  epochs_a: 6               # 阶段A：筛选
+  epochs_b: 10              # 阶段B：Top-2拉到10
+  epochs_c: 20              # 阶段C：冠军早停上限
+  max_val_batches_scan: 100 # 阈值扫描仅抽100个batch提速；小验证集可设 null
+  patience: 3               # 早停
+  min_delta: 0.003          # 0.3% Tail-F1 提升阈值
+  out_dir: fast_runs
