@@ -28,6 +28,7 @@ This repository integrates two main components for the joint analysis of sperm m
   - Implemented custom feature extraction (speed, linearity, curvature) for motility classification.
   - Integrated Gaussian Mixture Model (GMM) clustering to relate motility categories (A–D) to WHO standards.
   - Added visualization scripts for trajectory overlay and per-ID movement analysis.
+<img width="1500" height="1200" alt="image" src="https://github.com/user-attachments/assets/f18ed3e7-3b8a-41d1-b7f0-2b72db54b252" />
 
 ---
 
