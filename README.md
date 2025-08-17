@@ -86,6 +86,7 @@ python readingtracking.py
 - Average speed, trajectory linearity
 - Path curvature
 - WHO-based A–D category clustering
+<img width="1200" height="900" alt="image" src="https://github.com/user-attachments/assets/78034277-2c2e-48d9-99bd-f35f790086cc" />
 
 ---
 
