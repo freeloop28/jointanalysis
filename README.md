@@ -14,6 +14,7 @@ This repository integrates two main components for the joint analysis of sperm m
   - Customized dataset loader and augmentations (flipping, rotation, brightness variations) tailored for sperm microscopy images.
   - Added evaluation metrics (IoU, F1-score, Precision, Recall, AP) with per-class analysis.
   - Implemented post-processing for head-tail pairing.
+<img width="1200" height="400" alt="image" src="https://github.com/user-attachments/assets/d980b788-0495-41a4-a031-02573e7a5fee" />
 
 ---
 
